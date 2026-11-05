@@ -64,9 +64,10 @@ class ThrowableFilterServiceTest {
         assertTrue(ThrowableFilterService.shouldDiscardThrowable(exception3))
 
         // the termux IllegalArgumentException is user actionable noise: #22994
-        val termuxException = IllegalArgumentException(
-            "TermuxContentProvider requires `allow-external-apps` property to be set to `true` in `~/.termux/termux.properties` file.",
-        )
+        val termuxException =
+            IllegalArgumentException(
+                "TermuxContentProvider requires `allow-external-apps` property to be set to `true` in `~/.termux/termux.properties` file.",
+            )
         assertTrue(ThrowableFilterService.shouldDiscardThrowable(termuxException))
         // an ordinary IllegalArgumentException is still reported
         assertFalse(ThrowableFilterService.shouldDiscardThrowable(IllegalArgumentException("other")))
